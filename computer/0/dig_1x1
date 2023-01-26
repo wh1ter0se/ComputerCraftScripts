@@ -21,12 +21,22 @@ function getMaterial(amount,first,last)
     return false    
 end
 
+function getCobble(amount)
+    return getMaterial(amount,1,4)
+end
+
+function ifCobble()
+    success, data = turtle.inspect()
+    name = data.name
+    return (name == 'minecraft:cobblestone')
+end
+
 -- Goes forward until it finds a wall
 -- Returns number of blocks forward
 function findEnd()
     delta = 0
-    while not turtle.detect() do
-        turtle.forward()
+    while not turtle.detectDown() do
+        turtle.down()
         delta = delta + 1
     end
     return delta
@@ -35,41 +45,32 @@ end
 -- Goes back for specified length
 function returnHome(dist)
     for i=1,dist,1 do
-        turtle.back()
+        turtle.up()
     end
 end
 
 -- Mines the tunnel 1 block further
--- Starts at bottom right corner
 function mineLayer()
-    turtle.dig()
-    turtle.forward()
-    turtle.turnLeft()
+    turtle.digDown()
+    turtle.down()
     for i = 1,4,1 do
-        turtle.dig()
-        turtle.forward()
-    end
-    for i = 1,4,1 do
-        turtle.digUp()
-        turtle.up()
-        for j = 1,2,1 do
-            turtle.turnRight()
-        end
-        for j = 1,4,1 do
+        if not ifCobble() then
             turtle.dig()
-            turtle.forward()
+            getCobble(1)
+            turtle.place()
         end
+        turtle.turnLeft()
     end
-    for i = 1,4,1 do
-        turtle.back()
-        turtle.down()
-    end
-    turtle.turnRight()
 end
 
     
 refill(32)
-delta = findEnd()      
+--delta = findEnd()      
+delta = 0
+--for i = 1,35,1 do
+--    turtle.down()
+--    delta = delta +1
+--end
                 
 for layer = 1,layers,1 do
     print(layer)

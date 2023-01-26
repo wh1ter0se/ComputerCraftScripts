@@ -1,0 +1,49 @@
+layers = tonumber(arg[1])
+print('Total layers:',layers)
+
+function refill(minimum)
+    oldSlot = turtle.getSelectedSlot()
+    turtle.select(16)
+    while turtle.getFuelLevel() < minimum do
+        turtle.refuel(1)
+    end
+    turtle.select(oldSlot)
+end
+
+function getMaterial(amount,first,last)
+    for slot = first,last,1 do
+        turtle.select(slot)
+        stock = turtle.getItemCount()
+        if stock >= amount then 
+            return true
+        end
+    end    
+    return false    
+end
+
+function getCobble(amount)
+    return getMaterial(amount,1,15)
+end
+
+function newLayer()
+    while not getCobble(5) do
+        x = 0
+    end
+    turtle.forward()
+    turtle.placeDown()
+    turtle.turnLeft()
+    for i = 1,6,1 do
+        turtle.forward()
+        turtle.placeDown()
+    end
+    for i = 1,6,1 do
+        turtle.back()
+    end
+    turtle.turnRight()
+end
+
+for layer = 1,layers,1 do
+    print(layer)
+    refill(16)
+    newLayer()
+end

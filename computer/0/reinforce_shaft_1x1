@@ -1,0 +1,93 @@
+layers = tonumber(arg[1])
+print('Total layers:',layers)
+
+function refill(minimum)
+    oldSlot = turtle.getSelectedSlot()
+    turtle.select(16)
+    while turtle.getFuelLevel() < minimum do
+        turtle.refuel(1)
+    end
+    turtle.select(oldSlot)
+end
+
+function getMaterial(amount,first,last)
+    for slot = first,last,1 do
+        turtle.select(slot)
+        stock = turtle.getItemCount()
+        if stock >= amount then 
+            return true
+        end
+    end    
+    return false    
+end
+
+function getCobble(amount)
+    return getMaterial(amount,1,4)
+end
+
+function strafeLeft()
+    turtle.turnLeft()
+    turtle.forward()
+    turtle.turnRight()
+end
+
+-- Mines the tunnel 1 block further
+-- Starts at bottom right corner
+function mineLayer()
+    refill(12)
+    for i = 1,2,1 do
+        for j = 1,2,1 do
+            turtle.digDown()
+            turtle.forward()
+        end
+        turtle.digDown()
+        for j = 1,2,1 do
+            turtle.back()
+        end
+        strafeLeft()
+    end
+    
+    for i = 1,2,1 do
+        turtle.digDown()
+        turtle.forward()
+    end
+    turtle.digDown()
+    
+    for i = 1,2,1 do
+        turtle.back()
+    end
+    turtle.turnLeft()
+    for i = 1,2,1 do
+        turtle.back()
+    end
+    turtle.turnRight()
+    turtle.down()
+end
+
+function reinforceLayer()
+    refill(12)
+    turtle.turnRight()
+    for i = 1,4,1 do
+        getCobble(3)
+        for j=1,2,1 do
+            turtle.dig()
+            turtle.place()
+            strafeLeft()
+        end
+        turtle.dig()
+        turtle.place()
+        turtle.turnLeft()
+    end
+    turtle.turnLeft()
+end
+
+refill(10)   
+--while not turtle.detectDown() do
+--    turtle.down()
+--end             
+
+for layer = 1,layers,1 do
+    print(layer)
+    mineLayer()    
+    reinforceLayer()
+end
