@@ -7,13 +7,15 @@ basic = {}
 function basic.selectFuel()
     for slot = 1,16,1 do
         local selected = turtle.getItemDetail(slot)
-        local fuel = {'minecraft:charcoal',
-                      'minecraft:coal',
-                      'minecraft:coal_block',
-                      'minecraft:lava_bucket'}
-        if util.listContains(fuel,selected.name) then
-            turtle.select(slot)
-            return true
+        if selected ~= nil then
+            local fuel = {'minecraft:charcoal',
+                        'minecraft:coal',
+                        'minecraft:coal_block',
+                        'minecraft:lava_bucket'}
+            if util.listContains(fuel,selected.name) then
+                turtle.select(slot)
+                return true
+            end
         end
     end
     return false

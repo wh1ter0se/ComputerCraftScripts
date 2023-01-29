@@ -82,11 +82,12 @@ function mining.tunnel(width, height, depth)
         mining.mineForward(width-1)
         local odd = ((height)%2) == 1
         if odd then -- on the left side, facing left
-            basic.back(width-1)
-            basic.down(height-1)
-            turtle.turnRight()
+            basic.turnAround()
+            mining.mineForward(width-1)
+            mining.mineDown(height-1)
+            turtle.turnLeft()
         else -- on the right side, facing right
-            basic.down(height-1)
+            mining.mineDown(height-1)
             turtle.turnLeft()
         end
     end
