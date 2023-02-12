@@ -74,51 +74,63 @@ end
 -- Moves forward specified amount of steps
 -- Returns success
 function basic.forward(steps)
-    basic.refuel(steps)
-    return util.repeatFunc(steps, turtle.forward)
+    if steps < 0 then basic.back(steps) else
+        basic.refuel(steps)
+        return util.repeatFunc(steps, turtle.forward)
+    end
 end
 
 -- Moves back specified amount of steps
 -- Returns success
 function basic.back(steps)
-    basic.refuel(steps)
-    return util.repeatFunc(steps, turtle.back)
+    if steps < 0 then basic.forward(steps) else
+        basic.refuel(steps)
+        return util.repeatFunc(steps, turtle.back)
+    end
 end
 
 -- Moves up specified amount of steps
 -- Returns success
 function basic.up(steps)
-    basic.refuel(steps)
-    return util.repeatFunc(steps, turtle.up)
+    if steps < 0 then basic.down(steps) else
+        basic.refuel(steps)
+        return util.repeatFunc(steps, turtle.up)
+    end
 end
 
 -- Moves down specified amount of steps
 -- Returns success
 function basic.down(steps)
-    basic.refuel(steps)
-    return util.repeatFunc(steps, turtle.down)
+    if steps < 0 then basic.up(steps) else
+        basic.refuel(steps)
+        return util.repeatFunc(steps, turtle.down)
+    end
 end
 
 -- Strafes left specified amount of steps
 -- Returns success
 function basic.left(steps)
-    basic.refuel(steps)
-    Success = true
-    turtle.turnLeft()
-    Success = Success and util.repeatFunc(steps, turtle.forward)
-    turtle.turnRight()
-    return Success
+    if steps < 0 then basic.right(steps) else
+        basic.refuel(steps)
+        Success = true
+        turtle.turnLeft()
+        Success = Success and util.repeatFunc(steps, turtle.forward)
+        turtle.turnRight()
+        return Success
+    end
 end
 
 -- Strafes right specified amount of steps
 -- Returns success
 function basic.right(steps)
-    basic.refuel(steps)
-    Success = true
-    turtle.turnRight()
-    Success = Success and util.repeatFunc(steps, turtle.forward)
-    turtle.turnLeft()
-    return Success
+    if steps < 0 then basic.left(steps) else
+        basic.refuel(steps)
+        Success = true
+        turtle.turnRight()
+        Success = Success and util.repeatFunc(steps, turtle.forward)
+        turtle.turnLeft()
+        return Success
+    end
 end
 
 -- Turns right twice
