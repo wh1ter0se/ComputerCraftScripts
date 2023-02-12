@@ -3,24 +3,15 @@ require('..shared/util')
 
 vector = {}
 
+DirVecs = {{name='y+', vec={0,1,0}}, -- North
+           {name='x+', vec={1,0,0}}, -- West
+           {name='y-', vec={0,1,0}}, -- South
+           {name='x-', vec={0,1,0}}} -- East
+
 -- The direction it starts in is treated as North
-function vector.funcPattern(XYZVecs, iterFunc)
+function vector.funcByVector(XYZVecs, iterFunc)
     Pos = {0,0,0}
     Dir = 1 -- 1:Relative North (y+), 2:West (x+), 3:South (y-), 4:East (x-)
-    local dirVecs = {{name='y+', vec={0,1,0}}, -- North
-                     {name='x+', vec={1,0,0}}, -- West
-                     {name='y-', vec={0,1,0}}, -- South
-                     {name='x-', vec={0,1,0}}} -- East
-    local function turnLeft()
-        turtle.turnLeft()
-        Dir = Dir - 1
-        if Dir < 1 then Dir = 4 end
-    end
-    local function turnRight()
-        turtle.turnRight()
-        Dir = Dir + 1
-        if Dir > 4 then Dir = 1 end
-    end
 
     for i = 1,#XYZVecs,1 do
         local comps = {{name='x', val=XYZVecs[i][1], },
@@ -38,3 +29,56 @@ function vector.funcPattern(XYZVecs, iterFunc)
     end
 end
 
+function vector.turnLeft(direction)
+    turtle.turnLeft()
+    direction = direction - 1
+    if direction < 1 then direction = 4 end
+    return direction
+end
+
+function vector.turnRight(direction)
+    turtle.turnRight()
+    direction = direction + 1
+    if direction > 4 then direction = 1 end
+    return direction
+end
+
+function vector.turnToDir(direction, newDirection)
+    if direction == newDirection then return direction end
+    local pathDirect = math.abs(newDirection - direction)
+    local pathAround = (4-max(direction,newDirection)) + min(direction,newDirection)
+
+    --local pathMin = min(pathDirect, pathAround)
+
+    if pathDirect < pathAround then -- no looparound
+        if newDirection < direction then -- newDir left of dir
+            for i=1,pathDirect,1 do
+                direction = vector.turnLeft(direction)
+            end
+        else -- newDir right of dir
+            for i=1,pathDirect,1 do
+                direction = vector.turnRight(direction)
+            end
+        end
+    else -- looparound
+        if direction < newDirection then -- newDir left of dir
+            for i=1,pathAround,1 do
+                direction = vector.turnLeft(direction)
+            end
+        else -- newDir right of dir
+            for i=1,pathAround,1 do
+                direction = vector.turnRight(direction)
+            end
+        end
+    end
+
+    return direction
+end
+
+function vector.add(vecA, vecB)
+    sum = {}
+    for i = 1,#vecA,1 do
+        sum[i] = vecA[i] + vecB[i]
+    end
+    return sum
+end
