@@ -17,3 +17,13 @@ function util.repeatFunc(amount, func)
     end
     return Success
 end
+
+function util.findTableIndex(table,key,value)
+    for i = 1,#table,1 do
+        if table[i][key] == value then return i end
+    end
+end
+
+function util.ternary(cond, T, F)
+    if cond then return T else return F end
+end

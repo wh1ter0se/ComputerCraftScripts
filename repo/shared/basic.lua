@@ -57,9 +57,8 @@ end
 -- Attempts to select slot with specified item name
 -- Returns success 
 function basic.selectItem(itemName, minimum)
-    if not minimum then
-        minimum = 1
-    else basic.consolidate() end
+    if not minimum then minimum = 1 end
+    basic.consolidate()
     for slot = 1,16,1 do
         local selected = turtle.getItemDetail(slot)
         if selected.name == itemName and 
