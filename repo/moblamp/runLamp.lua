@@ -1,0 +1,3 @@
+require('lamp')
+
+lamp.RepeatSignal()
