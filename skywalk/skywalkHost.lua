@@ -1,33 +1,55 @@
 Motor = peripheral.wrap('bottom');
 
-MotorSpeed = -256
+Channel = 'skywalkS'
+
+MotorSpeed = -255
 
 OutgoingPad = 'right'
 IncomingPad = 'left'
 
-OutgoingTimer = 0
-IncomingTimer = 0
+OutgoingTimerEnd = 0
+IncomingTimerEnd = 0
 
 MinTravelTime = 12.0; -- seconds
 
-function enableOutgoing()
-
+local function seconds() -- float value
+    return os.time() * 50
 end
 
-function disableOutgoing()
+CurrTime = seconds()
+RunTime = 0
 
+local function updateTime()
+    local newTime = seconds()
+    local timeDelta = newTime - CurrTime
+    if timeDelta < 0 then timeDelta = timeDelta + 2400
+    CurrTime = newTime 
+    RunTime = RunTime + timeDelta
+end
+
+local function listen()
+    local senderId, message, protocol = rednet.receive(Channel,0.01)
+    if message == 'outgoingOff' then
+        OutgoingTimerEnd = RunTime
+    elseif message == 'incomingOn' then
+        IncomingTimerEnd = RunTime + MinTravelTime
+    end
 end
 
 while true do
+    updateTime()
+    listen()
 
     if redstone.getInput(OutgoingPad) then
-        OutgoingTimer = MinTravelTime;
+        OutgoingTimerEnd = RunTime + MinTravelTime
     end   
-    
-    if redstone.getOutput(OutgoingPad) then
-        IncomingTimer = 0
+    if redstone.getInput(IncomingPad) then
+        IncomingTimerEnd = RunTime
     end
 
-    local senderId, message, protocol = rednet.receive("elevator",0.1)
-
+    if OutgoingTimerEnd > RunTime or IncomingTimerEnd > Runtime then
+        Motor.setSpeed(MotorSpeed)
+    else
+        Motor.setSpeed(0)
+    end
 end
