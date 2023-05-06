@@ -1,4 +1,7 @@
-Server = {}
+Server = {side = 'back',
+          initFunc = function () end,
+          iterFunc = function () return 1 end,
+          ignoreStatus = false}
 
 function Server:new(o,side,initFunc,iterFunc,ignoreStatus)
     o = o or {}
@@ -31,6 +34,8 @@ function Server:run()
         if not success and statusCode == 'Terminated' then
             terminated = true
             print('Terminated')
+        elseif not success then
+            self:statusUpdate(-1)
         end
     end
 end
