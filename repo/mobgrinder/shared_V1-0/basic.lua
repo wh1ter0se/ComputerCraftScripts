@@ -5,14 +5,14 @@ basic = {}
 -- Attempts to select slot with fuel
 -- Returns success
 function basic.selectFuel()
-    for slot = 1,16,1 do
+    for slot = 1, 16, 1 do
         local selected = turtle.getItemDetail(slot)
         if selected ~= nil then
-            local fuel = {'minecraft:charcoal',
-                        'minecraft:coal',
-                        'minecraft:coal_block',
-                        'minecraft:lava_bucket'}
-            if util.listContains(fuel,selected.name) then
+            local fuel = { 'minecraft:charcoal',
+                'minecraft:coal',
+                'minecraft:coal_block',
+                'minecraft:lava_bucket' }
+            if util.listContains(fuel, selected.name) then
                 turtle.select(slot)
                 return true
             end
@@ -28,7 +28,9 @@ function basic.refuel(minimum)
     while turtle.getFuelLevel() < minimum do
         if basic.selectFuel() then
             turtle.refuel(1)
-        else break end
+        else
+            break
+        end
     end
     turtle.select(oldSlot)
     return turtle.getFuelLevel() >= minimum
@@ -40,9 +42,9 @@ function basic.consolidate()
     local oldSlot = turtle.getSelectedSlot()
     Consolidated = true
     while not Consolidated do
-        for slot = 2,16,1 do
+        for slot = 2, 16, 1 do
             local selected = turtle.getItemDetail(slot)
-            for prevslot = 1,slot,1 do
+            for prevslot = 1, slot, 1 do
                 local previous = turtle.getItemDetail(prevslot)
                 if selected.name == previous.name then
                     turtle.transferTo(prevSlot)
@@ -55,14 +57,15 @@ function basic.consolidate()
 end
 
 -- Attempts to select slot with specified item name
--- Returns success 
+-- Returns success
 function basic.selectItem(itemName, minimum)
     if not minimum then minimum = 1 end
     basic.consolidate()
-    for slot = 1,16,1 do
+    for slot = 1, 16, 1 do
         local selected = turtle.getItemDetail(slot)
-        if selected.name == itemName and 
-           selected.count >= minimum then
+        if selected and
+            selected.name == itemName and
+            selected.count >= minimum then
             turtle.select(slot)
             return true
         end
@@ -73,7 +76,9 @@ end
 -- Moves forward specified amount of steps
 -- Returns success
 function basic.forward(steps)
-    if steps < 0 then basic.back(steps) else
+    if steps < 0 then
+        basic.back(math.abs(steps))
+    else
         basic.refuel(steps)
         return util.repeatFunc(steps, turtle.forward)
     end
@@ -82,7 +87,9 @@ end
 -- Moves back specified amount of steps
 -- Returns success
 function basic.back(steps)
-    if steps < 0 then basic.forward(steps) else
+    if steps < 0 then
+        basic.forward(math.abs(steps))
+    else
         basic.refuel(steps)
         return util.repeatFunc(steps, turtle.back)
     end
@@ -91,7 +98,9 @@ end
 -- Moves up specified amount of steps
 -- Returns success
 function basic.up(steps)
-    if steps < 0 then basic.down(steps) else
+    if steps < 0 then
+        basic.down(math.abs(steps))
+    else
         basic.refuel(steps)
         return util.repeatFunc(steps, turtle.up)
     end
@@ -100,7 +109,9 @@ end
 -- Moves down specified amount of steps
 -- Returns success
 function basic.down(steps)
-    if steps < 0 then basic.up(steps) else
+    if steps < 0 then
+        basic.up(math.abs(steps))
+    else
         basic.refuel(steps)
         return util.repeatFunc(steps, turtle.down)
     end
@@ -109,7 +120,9 @@ end
 -- Strafes left specified amount of steps
 -- Returns success
 function basic.left(steps)
-    if steps < 0 then basic.right(steps) else
+    if steps < 0 then
+        basic.right(math.abs(steps))
+    else
         basic.refuel(steps)
         Success = true
         turtle.turnLeft()
@@ -122,7 +135,9 @@ end
 -- Strafes right specified amount of steps
 -- Returns success
 function basic.right(steps)
-    if steps < 0 then basic.left(steps) else
+    if steps < 0 then
+        basic.left(math.abs(steps))
+    else
         basic.refuel(steps)
         Success = true
         turtle.turnRight()

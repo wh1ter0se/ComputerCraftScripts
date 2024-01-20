@@ -1,4 +1,4 @@
-require('mining')
+require('shared_V1-1/mining')
 
 local width = tonumber(arg[1])
 local height = tonumber(arg[2])

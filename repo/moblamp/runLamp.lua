@@ -1,3 +1,0 @@
-require('lamp')
-
-lamp.RepeatSignal()

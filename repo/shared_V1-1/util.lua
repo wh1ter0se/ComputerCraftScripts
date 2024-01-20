@@ -12,14 +12,14 @@ end
 function util.repeatFunc(amount, func)
     if not amount then amount = 1 end
     Success = true
-    for i = 1,amount,1 do
+    for i = 1, amount, 1 do
         Success = Success and func()
     end
     return Success
 end
 
 function util.findTableIndex(table, key, value)
-    for i = 1,#table,1 do
+    for i = 1, #table, 1 do
         if table[i][key] == value then return i end
     end
 end
@@ -30,11 +30,11 @@ end
 
 function util.split(inputstr, sep)
     if sep == nil then
-            sep = "%s"
+        sep = "%s"
     end
-    local t={}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-            table.insert(t, str)
+    local t = {}
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        table.insert(t, str)
     end
     return t
 end
