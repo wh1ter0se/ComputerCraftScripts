@@ -2,11 +2,10 @@ require('shared_V1-1/basic')
 
 -- <command> [blocks_wide] [blocks_deep]
 -- starts at front right corner
-MATERIAL = 'minecraft:cobblestone'
-BLOCKS_TALL = tonumber(arg[1])
+BLOCKS_WIDE = tonumber(arg[1])
 BLOCKS_DEEP = tonumber(arg[2])
-OUTLINE = tonumber(arg[3])
-print('Blocks Wide: ', BLOCKS_TALL)
+MATERIAL = 'minecraft:white_concrete'
+print('Blocks Wide: ', BLOCKS_WIDE)
 print('Blocks Deep: ', BLOCKS_DEEP)
 print('Material: ', MATERIAL)
 
@@ -16,7 +15,7 @@ print('Material: ', MATERIAL)
 -- zigzag front/back
 POS_X = 0
 POS_Y = 0
-for row = 1, BLOCKS_TALL do
+for row = 1, BLOCKS_WIDE do
     -- new direction and position for zigag
     if math.fmod(row, 2) == 1 then
         MOVE = basic.forward
@@ -38,7 +37,7 @@ for row = 1, BLOCKS_TALL do
     end
 
     --next row
-    if row < BLOCKS_TALL then
+    if row < BLOCKS_WIDE then
         basic.left(1)
         POS_X = POS_X + 1
     end
