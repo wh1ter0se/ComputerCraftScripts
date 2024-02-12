@@ -1,0 +1,33 @@
+{
+    "upperMain" : {
+        "currFloor":1,
+        "floors":[
+            {"level":80,"name":"Upper Exit"},
+            {"level":199,"name":"Chamfer"},
+            {"level":212,"name":"Skydeck"},
+            {"level":224,"name":"Guest Room"},
+            {"level":234,"name":"Server Farm"},
+            {"level":243,"name":"Garden"},
+            {"level":253,"name":"[Construction]"},
+            {"level":290,"name":"Generator"},
+            {"level":299,"name":"Penthouse"}]
+    },
+    "lowerMain" : {
+        "currFloor":1,
+        "floors":[
+            {"level":-57,"name":"Y-59"},
+            {"level":-54,"name":"Y-53"},
+            {"level":-48,"name":"Y-47"},
+            {"level":-42,"name":"Y-41"},
+            {"level":-36,"name":"Y-35"},
+            {"level":-30,"name":"Y-29"},
+            {"level":-24,"name":"Y-23"},
+            {"level":-18,"name":"Y-17"},
+            {"level":-12,"name":"Y-11"},
+            {"level":-6, "name":"Y-5"},
+            {"level":0,  "name":"Y+1"},
+            {"level":6,  "name":"Y+7"},
+            {"level":12, "name":"Y+13"}]
+    }
+    
+}

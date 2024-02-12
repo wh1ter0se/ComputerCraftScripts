@@ -1,0 +1,55 @@
+{
+    "1A":[
+        {"name":"Respiration",
+        "level":3,
+        "cost":13}
+    ],
+    "1B":[
+        {"name":"Sharpness",
+        "level":4,
+        "cost":53}
+    ],
+    "1C":[
+        {"name":"Mending",
+        "level":1,
+        "cost":12}
+    ],
+    "1D":[
+        {"name":"Frost Walker",
+        "level":2,
+        "cost":14}
+    ],
+
+    "1E":[
+        {"name":"Protection",
+        "level":4,
+        "cost":31},
+        {"name":"Thorns",
+        "level":2,
+        "cost":10}
+    ],
+    "1F":[
+        {"name":"Projectile Protection",
+        "level":3,
+        "cost":38}
+    ],
+    "1G":[
+        {"name":"Efficiency",
+        "level":1,
+        "cost":18}
+    ],
+    "1H":[
+        {"name":"Infinity",
+        "level":1,
+        "cost":7}
+    ],
+
+    "1I":[
+        {"name":"Thorns",
+        "level":1,
+        "cost":13},
+        {"name":"Punch",
+        "level":2,
+        "cost":16}
+    ]
+}
