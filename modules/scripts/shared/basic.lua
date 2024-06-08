@@ -1,4 +1,4 @@
-require('shared_V1-1/util')
+require('shared/util')
 
 basic = {}
 

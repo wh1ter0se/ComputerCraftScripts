@@ -1,5 +1,5 @@
-require('shared_V1-1/basic')
-require('shared_V1-1/util')
+require('shared/basic')
+require('shared/util')
 
 MINING = {}
 

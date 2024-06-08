@@ -1,4 +1,4 @@
-require('shared_V1-1/basic')
+require('shared/basic')
 
 -- <command> [blocks_wide] [blocks_deep]
 -- starts at front right corner
