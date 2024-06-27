@@ -9,8 +9,8 @@ MATERIAL = 'minecraft:white_concrete'
 if arg[3] == '-m' or arg[3] == '-M' then
     MATERIAL = arg[4]
 end
-EN_UP       = util.listContains(arg, '-u') or util.listContains(arg, '-U')
-EN_REPLACE  = util.listContains(arg, '-r') or util.listContains(arg, '-R')
+EN_UP      = util.listContains(arg, '-u') or util.listContains(arg, '-U')
+EN_REPLACE = util.listContains(arg, '-r') or util.listContains(arg, '-R')
 
 print('Blocks Wide: ', BLOCKS_WIDE)
 print('Blocks Deep: ', BLOCKS_DEEP)
@@ -50,7 +50,7 @@ for row = 1, BLOCKS_WIDE do
 
     -- build row
     basic.selectItem(MATERIAL, BLOCKS_DEEP)
-    for col = 1, BLOCKS_DEEP do
+    for col = 1, (BLOCKS_DEEP - 1) do
         MOVE(1)
         PLACE()
     end

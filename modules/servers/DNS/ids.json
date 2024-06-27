@@ -1,0 +1,84 @@
+{
+    "oasis": {
+        "pneumatic_room": {
+            "INV": {
+                "washer_input": "sophisticatedstorage:barrel_10",
+                "washer_output": "sophisticatedstorage:barrel_5",
+                "smoker_input": "sophisticatedstorage:barrel_9",
+                "smoker_output": "sophisticatedstorage:barrel_7",
+                "blaster_input": "sophisticatedstorage:barrel_11",
+                "blaster_output": "sophisticatedstorage:barrel_4",
+                "haunter_input": "sophisticatedstorage:barrel_8",
+                "haunter_output": "sophisticatedstorage:barrel_6"
+            },
+            "CTRL": {
+                "washer_motor": "computer_32",
+                "smoker_motor": "computer_29",
+                "blaster_motor": "computer_10",
+                "haunter_motor": "computer_30"
+            }
+        },
+        "boiler_room": {
+            "INV": {},
+            "CTRL": {
+                "boiler_reserve_input_pump": "computer_34",
+                "boiler_reserve_output_pump": "computer_37",
+                "utility_reserve_input_pump": "computer_34",
+                "utility_reserve_output_pump": "",
+                "left_boiler_water_pump": "",
+                "right_boiler_water_pump": "",
+                "alternator_controller": ""
+            }
+        },
+        "oasis_station": {
+            "INV": {
+                "train_inventory_left": "create:portable_storage_interface_4",
+                "train_inventory_center": "create:portable_storage_interface_2",
+                "train_inventory_right": "create:portable_storage_interface_3"
+            },
+            "CTRL": {
+                "export_pump_motor": "computer_64",
+                "import_pump_motor": "computer_65",
+                "train_inventory_controller": "computer_66"
+            }
+        },
+        "factory_floor_A": {
+            "INV": {
+                "cobble_gen_output": "sophisticatedstorage:limited_barrel_2",
+                "crusher_input": "sophisticatedstorage:barrel_12",
+                "crusher_output": ""
+            },
+            "CTRL": {}
+        },
+        "storage_room_A": {
+            "INV": {
+                "storage_A1": "sophisticatedstorage:barrel_13"
+            },
+            "CTRL": {}
+        },
+        "NE_elevator": {
+            "INV": {},
+            "CTRL": {
+                "pulley_motor": "",
+                "cabin_gps": "",
+                "cabin_panel": "",
+                "floor_1_button": "",
+                "floor_2_button": "",
+                "floor_3_button": "",
+                "floor_4_button": ""
+            }
+        },
+        "SW_elevator": {
+            "INV": {},
+            "CTRL": {
+                "pulley_motor": "",
+                "cabin_gps": "",
+                "cabin_panel": "",
+                "floor_1_button": "",
+                "floor_2_button": "",
+                "floor_3_button": "",
+                "floor_4_button": ""
+            }
+        }
+    },
+}
