@@ -108,15 +108,14 @@ function MINING.optTunnel(width, height, depth)
     local function mineLayer()
         REMAINING_HEIGHT = height
         ROW = 0
-        POS_X = 0 --        left = +, blocks
-        POS_Y = 0 --        up   = -, blocks
+        POS_X = 0
         MINING.mineForward(1)
         turtle.turnLeft()
         while REMAINING_HEIGHT > 0 do
             if math.fmod(ROW, 2) == 0 then
-                POS_X = POS_X + (width-1) -- going left
+                POS_X = POS_X + width
             else
-                POS_X = POS_X - (width-1) -- going right
+                POS_X = POS_X - width
             end
 
             if REMAINING_HEIGHT >= 3 then
@@ -129,9 +128,7 @@ function MINING.optTunnel(width, height, depth)
                 end
                 MINING.mineUp(2)
                 basic.turnAround()
-                POS_Y = POS_Y + 3
-                REMAINING_HEIGHT = REMAINING_HEIGHT - 3
-
+                REMAINING_HEIGHT = REMAINING_HEIGHT - 2
             elseif REMAINING_HEIGHT == 2 then
                 turtle.digUp()
                 for i = 1,width-1 do
@@ -140,29 +137,15 @@ function MINING.optTunnel(width, height, depth)
                 end
                 MINING.mineUp(2)
                 basic.turnAround()
-                POS_Y = POS_Y + 2
                 REMAINING_HEIGHT = REMAINING_HEIGHT - 2
-
             elseif REMAINING_HEIGHT == 1 then
                 MINING.mineForward(width-1)
                 MINING.mineUp(1)
                 basic.turnAround()
-                POS_Y = POS_Y + 1
                 REMAINING_HEIGHT = REMAINING_HEIGHT - 1
             end
-
             ROW = ROW + 1
         end
-
-        if math.fmod(ROW, 2) == 0 then
-            turtle.turnRight()
-        else
-            turtle.turnLeft()
-        end
-        basic.down(POS_Y)
-        basic.right(POS_X)
-        
-
     end
     for layer = 1, depth, 1 do
         print(layer)

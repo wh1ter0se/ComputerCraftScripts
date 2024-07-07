@@ -1,16 +1,4 @@
-cobble_gen_output = peripheral.wrap("sophisticatedstorage:limited_barrel_2")
-crusher_input= peripheral.wrap("sophisticatedstorage:barrel_12")
-crusher_output= peripheral.wrap("sophisticatedstorage:barrel_14")
-washer_input = peripheral.wrap("sophisticatedstorage:barrel_10")
-washer_output = peripheral.wrap("sophisticatedstorage:barrel_5")
-blaster_input = peripheral.wrap("sophisticatedstorage:barrel_11")
-blaster_output = peripheral.wrap("sophisticatedstorage:barrel_4")
-storage_A1 = peripheral.wrap("sophisticatedstorage:barrel_13")
-storage_A2 = peripheral.wrap("sophisticatedstorage:barrel_15")
-storage_A3 = peripheral.wrap("sophisticatedstorage:limited_barrel_8")
-train_left = peripheral.wrap("create:portable_storage_interface_4")
-train_center = peripheral.wrap("create:portable_storage_interface_2")
-train_right = peripheral.wrap("create:portable_storage_interface_3")
+
 
 function move_all(inv_from, inv_to)
     for slot, item in pairs(inv_from.list()) do
@@ -50,7 +38,21 @@ function keep_type_stocked(inv_from, inv_to, typeName, minAmount)
     end
 end
 
-while true do
+function run_manifest() 
+    cobble_gen_output = peripheral.wrap("sophisticatedstorage:limited_barrel_2")
+    crusher_input= peripheral.wrap("sophisticatedstorage:barrel_12")
+    crusher_output= peripheral.wrap("sophisticatedstorage:barrel_14")
+    washer_input = peripheral.wrap("sophisticatedstorage:barrel_10")
+    washer_output = peripheral.wrap("sophisticatedstorage:barrel_5")
+    blaster_input = peripheral.wrap("sophisticatedstorage:barrel_11")
+    blaster_output = peripheral.wrap("sophisticatedstorage:barrel_4")
+    storage_A1 = peripheral.wrap("sophisticatedstorage:barrel_13")
+    storage_A2 = peripheral.wrap("sophisticatedstorage:barrel_15")
+    storage_A3 = peripheral.wrap("sophisticatedstorage:limited_barrel_8")
+    train_left = peripheral.wrap("create:portable_storage_interface_4")
+    train_center = peripheral.wrap("create:portable_storage_interface_2")
+    train_right = peripheral.wrap("create:portable_storage_interface_3")
+
     keep_type_stocked(cobble_gen_output, crusher_input, "minecraft:cobblestone", 64)
     keep_type_stocked(crusher_output, crusher_input, "minecraft:gravel", 64)
     move_all_by_types(crusher_output, washer_input, {"minecraft:gravel"})
@@ -67,4 +69,15 @@ while true do
     move_all_by_types(storage_A1, storage_A3, {"minecraft:flint"})
     move_all_by_types(storage_A1, storage_A3, {"minecraft:flint"})
     move_all_by_types(storage_A2, storage_A3, {"minecraft:flint"})
+end
+
+while true do
+    succes, err = pcall(run_manifest)
+    if succes then
+        print("all items pushed")
+    elseif err == "Terminated" then
+        break
+    else
+        print(err)
+    end
 end

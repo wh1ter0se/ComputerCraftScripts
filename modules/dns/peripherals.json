@@ -13,8 +13,8 @@
             },
             "CTRL": {
                 "washer_motor": "computer_32",
-                "smoker_motor": "computer_29",
-                "blaster_motor": "computer_10",
+                "smoker_motor": "electric_motor_9",
+                "blaster_motor": "electric_motor_8",
                 "haunter_motor": "computer_30"
             }
         },
@@ -56,19 +56,17 @@
             },
             "CTRL": {}
         },
-        "NE_elevator": {
+        "NW_elevator": {
             "INV": {},
             "CTRL": {
-                "pulley_motor": "",
-                "cabin_gps": "",
-                "cabin_panel": "",
+                "pulley_motor": "electric_motor_13",
                 "floor_1_button": "",
                 "floor_2_button": "",
                 "floor_3_button": "",
                 "floor_4_button": ""
             }
         },
-        "SW_elevator": {
+        "SE_elevator": {
             "INV": {},
             "CTRL": {
                 "pulley_motor": "",
@@ -80,5 +78,5 @@
                 "floor_4_button": ""
             }
         }
-    },
+    }
 }
