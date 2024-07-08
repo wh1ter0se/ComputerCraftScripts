@@ -1,14 +1,39 @@
 {
     "elevator_oasis_NW": {
-        "label": "Oasis (Northwest Elevator)",
+        "label": "Oasis (NW)",
         "yOffset": -2,       
+        "currentLevel": "L2",
         "levels": {
-            "Level 2": 60,
-            "Level 1": 60,
-            "Lobby": 60,
-            "Level B1": 0,
-            "Level B2": 0,
-            "Level B3": 0
+            "L2": {
+                "yCoord": 122,
+                "fullLabel": "Level 2",
+                "order": 0
+            },
+            "L1": {
+                "yCoord": 111,
+                "fullLabel": "Level 1",
+                "order": 1
+            },
+            "L": {
+                "yCoord": 100,
+                "fullLabel": "Lobby",
+                "order": 2
+            },
+            "B1": {
+                "yCoord": -44,
+                "fullLabel": "Basement 1",
+                "order": 3
+            },
+            "B2": {
+                "yCoord": -50,
+                "fullLabel": "Basement 2",
+                "order": 4
+            },
+            "B3": {
+                "yCoord": -56,
+                "fullLabel": "Basement 3",
+                "order": 5
+            }
         }
     }
 }
