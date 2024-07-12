@@ -1,6 +1,12 @@
 {
     "Lua.diagnostics.globals": [
         "turtle",
-        "peripheral"
+        "peripheral",
+        "rednet",
+        "term",
+        "colors"
+    ],
+    "Lua.diagnostics.disable": [
+        "lowercase-global"
     ]
 }

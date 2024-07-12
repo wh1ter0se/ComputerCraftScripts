@@ -8,6 +8,7 @@ motorSpeed       = tonumber(arg[3])  -- 64
 modemSide        =          arg[4] or "back"
 
 elevatorGpsProtocol = elevatorProtocol.."_gps"
+elevatorInfoProtocol = elevatorProtocol.."_info"
 elevatorsJson = json.ReadJson("elevator/elevators.json")
 elevatorOffset = elevatorsJson[elevatorProtocol]["yOffset"]
 
@@ -18,18 +19,18 @@ rednet.host(elevatorGpsProtocol, "server")
 cabinTransponderId = rednet.lookup(elevatorGpsProtocol, "transponder")
 motor = dns.getPeripheral(motorPeripheral)
 
-currentFloor = ""
+currentFloor = "N/A"
 
 function log(message)
-    print(message)
-    rednet.broadcast(message, elevatorProtocol)
+    print("[BROADCAST] "..message)
+    rednet.broadcast(message, elevatorInfoProtocol)
 end
 
 function getCabinLevel()
     resp = nil
     while resp == nil do
         rednet.send(cabinTransponderId, "request", elevatorGpsProtocol)
-        _, resp = rednet.receive(elevatorGpsProtocol, 1)
+        _, resp = rednet.receive(elevatorGpsProtocol, 0.1)
     end
     return tonumber(resp)
 end
@@ -59,40 +60,45 @@ function moveToPosition(yCoord)
 end
 
 function moveToFloor(floorSlug)
-    log("Elevator requested to "..floorSlug)
     floorLevel = elevatorsJson[elevatorProtocol]["levels"][floorSlug]["yCoord"]
-    floorLevel = elevatorsJson[elevatorProtocol]["levels"][floorSlug]["fullLabel"]
+    floorLabel = elevatorsJson[elevatorProtocol]["levels"][floorSlug]["fullLabel"]
+    log("Elevator requested to "..floorLabel)
+
     if floorLevel == nil then
-        log("Invalid floor label: \""..floorSlug.."\"")
+        log("Invalid floor slug: \""..floorSlug.."\"")
         return
     end
     floorLevel = floorLevel + elevatorOffset
     moveToPosition(floorLevel)
     currentFloor = floorSlug
-    log("Elevator arrived at "..floorSlug)
+    log("Elevator arrived at "..floorLabel)
 end
 
 function sendCurrentFloor(receiverId)
-    rednet.send(receiverId, currentFloor)
+    rednet.send(receiverId, {"currentFloor", "resp", currentFloor}, elevatorProtocol)
+    print("[INFO] Sending current floor: "..currentFloor)
 end
 
 function sendFloorData(receiverId)
-    rednet.send(receiverId, elevatorsJson[elevatorProtocol]["levels"])
+    floorData = {"floorData", "resp", elevatorsJson[elevatorProtocol]["levels"]}
+    rednet.send(receiverId, floorData, elevatorProtocol)
+    print("[INFO] Sending floor data: ")
+    print(floorData)
 end
 
 while true do
     senderId, message = rednet.receive(elevatorProtocol)
-    print(message)
+    print("[RECEIVED]"..message)
     messages = util.split(message, ";")
     if messages[1] == "request" then
-        print("Processing move request...")
+        print("[INFO] Processing move request...")
         requestedFloor = messages[2]
         moveToFloor(requestedFloor)
     elseif messages[1] == "currentFloor" then
-        print("Processing currentFloor request...")
-        sendFloorData(senderId)
+        print("[INFO] Processing currentFloor request...")
+        sendCurrentFloor(senderId)
     elseif messages[1] == "floorData" then
-        print("Processing floorData request...")
+        print("[INFO] Processing floorData request...")
         sendFloorData(senderId)
     end
 end

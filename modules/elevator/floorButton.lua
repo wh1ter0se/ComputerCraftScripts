@@ -3,6 +3,8 @@ elevatorFloor    = arg[2] -- "L1"
 modemSide        = arg[3] or "bottom"
 buttonSide       = arg[4] or "back"
 
+elevatorInfoProtocol = elevatorProtocol.."_info"
+
 rednet.open(modemSide)
 rednet.host(elevatorProtocol, "floor_"..tostring(elevatorFloor))
 
@@ -22,7 +24,7 @@ while true do
         end
 
     elseif eventData[1] == "rednet_message"  and 
-           eventData[4] == elevatorProtocol then
+           eventData[4] == elevatorInfoProtocol then
         print("[SERVER] "..eventData[3])
     end
 end

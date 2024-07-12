@@ -21,26 +21,21 @@ function gui.monitorHeightPx(monitorHeightBlocks)
     return 5 + (monitorHeightBlocks*7) 
 end
 
-function gui.drawButtonGrid(frame, numRows, numCols, margin, labels, callback)
-    lcf = {(numRows*1 + (numRows+1)*margin),
-           (numCols*1 + (numCols+1)*margin)}
-    marginSize = {margin/lcf[1], 
-                  margin/lcf[2]}
-    buttonSize = {1/lcf[1], 
-                  1/lcf[2]}
-
+function gui.drawButtonGrid(frame, numRows, numCols, buttonSize, margin, labels, callback)
     for row = 0,(numRows-1) do
         for col = (numCols-1),0,-1 do
             label = labels
-            x = marginSize[1]*(col+1) + buttonSize[1]*(col)
-            y = marginSize[2]*(row+1) + buttonSize[2]*(row)
+            x = margin*(col+1) + buttonSize[1]*(col)
+            y = margin*(row+1) + buttonSize[2]*(row)
             if label ~= nil then
+                print(x, y)
                 button = frame:addButton()
-                              :setPosition("parent.x*"..tostring(x), 
-                                           "parent.y*"..tostring(y))
-                              :setSize("parent.x*"..tostring(buttonSize[1]),
-                                       "parent.y*"..tostring(buttonSize[2]))
+                              :setPosition(x, y)
+                              :setSize(buttonSize[1],
+                                       buttonSize[2])
                               :setText(label)
+                              :setForeground(colors.black)
+                              :setBackground(colors.yellow)
                               :onClick(
                                   function()
                                       callback(label)
