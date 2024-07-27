@@ -1,0 +1,58 @@
+{
+    "javelin_S1A": {
+        "material": "steel",
+        "segments": {
+            "breech": {
+                "mould": "createbigcannons:screw_breech_cast_mould",
+                "height": 1
+            },
+            "base_1": {
+                "mould": "createbigcannons:medium_cast_mould",
+                "height": 6
+            },
+            "base_2": {
+                "mould": "createbigcannons:small_cast_mould",
+                "height": 6
+            },
+            "barrel_1": {
+                "mould": "createbigcannons:very_small_cast_mould",
+                "height": 8
+            },
+            "barrel_2": {
+                "mould": "createbigcannons:very_small_cast_mould",
+                "height": 8
+            },
+            "barrel_3": {
+                "mould": "createbigcannons:very_small_cast_mould",
+                "height": 2
+            }
+        },
+        "operations": [
+            {
+                "type": "place",
+                "positions": {
+                    "base_1":0,
+                    "base_2":6,
+                    "barrel_1":12,
+                    "barrel_2":20,
+                    "barrel_3":28
+                }
+            },
+            {
+                "type": "compress",
+                "depth": 12
+            },
+            {
+                "type": "place",
+                "positions": {
+                    "base_1":0,
+                    "base_2":6,
+                    "barrel_1":12,
+                    "barrel_2":20,
+                    "barrel_3":28
+                }
+            }
+
+        ]
+    }
+}

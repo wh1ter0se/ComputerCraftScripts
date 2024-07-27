@@ -11,6 +11,7 @@
                 "haunter_input": "sophisticatedstorage:barrel_8",
                 "haunter_output": "sophisticatedstorage:barrel_6"
             },
+            "FLUID": {},
             "CTRL": {
                 "washer_motor": "computer_32",
                 "smoker_motor": "electric_motor_9",
@@ -20,6 +21,7 @@
         },
         "boiler_room": {
             "INV": {},
+            "FLUID": {},
             "CTRL": {
                 "boiler_reserve_input_pump": "computer_34",
                 "boiler_reserve_output_pump": "computer_37",
@@ -30,12 +32,103 @@
                 "alternator_controller": ""
             }
         },
+        "foundry": {
+            "INV": {
+                "steel_buffer": "sophisticatedstorage:barrel_25"
+            },
+            "FLUID": {
+                "steel_tank": "create:fluid_tank_13",
+                "cast_iron_tank": "create:fluid_tank_14",
+                "bronze_tank": "create:fluid_tank_15",
+                "nethersteel_tank": "create:fluid_tank_16"
+            },
+            "CTRL": {
+                "steel_melter_pump": "electric_motor_27",
+                "steel_mixer_pump": "",
+                "steel_mixer_controller": "computer_77"
+            }
+        },
+        "cannon_assembly_room": {
+            "INV": {
+                "tower_1_casting_sand": "",
+                "tower_2_casting_sand": "",
+                "tower_3_casting_sand": "",  
+                "tower_4_casting_sand": "",
+                "tower_5_casting_sand": "",
+                "tower_6_casting_sand": "",
+                "tower_7_casting_sand": "",
+                "tower_8_casting_sand": "",
+                "tower_9_casting_sand": "",
+                "tower_10_casting_sand": "",
+                "tower_11_casting_sand": "",
+                "tower_12_casting_sand": "",
+                "tower_13_casting_sand": "",
+                "tower_14_casting_sand": "",
+                "tower_15_casting_sand": "",
+                "tower_16_casting_sand": "",
+                "tower_1_deployers": [
+                    "create:deployer_12",
+                    "create:deployer_19",
+                    "create:deployer_18",
+                    "create:deployer_17",
+                    "create:deployer_16",
+                    "create:deployer_15",
+                    "create:deployer_14",
+                    "create:deployer_13"
+                ],
+                "tower_2_deployers": [],
+                "tower_3_deployers": [
+                    "create:deployer_20",
+                    "create:deployer_21",
+                    "create:deployer_22",
+                    "create:deployer_23",
+                    "create:deployer_24",
+                    "create:deployer_25",
+                    "create:deployer_26",
+                    "create:deployer_27"
+                ],
+                "tower_4_deployers": [],
+                "tower_5_deployers": [
+                    "create:deployer_28",
+                    "create:deployer_29",
+                    "create:deployer_30",
+                    "create:deployer_31",
+                    "create:deployer_32",
+                    "create:deployer_33",
+                    "create:deployer_34",
+                    "create:deployer_35"
+                ],
+                "tower_6_deployers": [],
+                "tower_7_deployers": [],
+                "tower_8_deployers": [],
+                "tower_9_deployers": [],
+                "tower_10_deployers": [],
+                "tower_11_deployers": [],
+                "tower_12_deployers": [],
+                "tower_13_deployers": [
+                    "create:deployer_37",
+                    "create:deployer_38"
+                ],
+                "tower_14_deployers": [],
+                "tower_15_deployers": [
+                    "create:deployer_36"
+                ],
+                "tower_16_deployers": []
+            },
+            "FLUID": {
+                "steel_tank": "create:fluid_tank_9"
+            },
+            "CTRL": {
+                "tower_1_deployer_motor": "electric_motor_33"
+            }
+        },
         "oasis_station": {
             "INV": {
                 "train_inventory_left": "create:portable_storage_interface_4",
                 "train_inventory_center": "create:portable_storage_interface_2",
                 "train_inventory_right": "create:portable_storage_interface_3"
             },
+            "FLUID": {},
             "CTRL": {
                 "export_pump_motor": "computer_64",
                 "import_pump_motor": "computer_65",
@@ -48,16 +141,19 @@
                 "crusher_input": "sophisticatedstorage:barrel_12",
                 "crusher_output": ""
             },
+            "FLUID": {},
             "CTRL": {}
         },
         "storage_room_A": {
             "INV": {
                 "storage_A1": "sophisticatedstorage:barrel_13"
             },
+            "FLUID": {},
             "CTRL": {}
         },
         "NW_elevator": {
             "INV": {},
+            "FLUID": {},
             "CTRL": {
                 "pulley_motor": "electric_motor_13",
                 "floor_1_button": "",
@@ -68,6 +164,7 @@
         },
         "SE_elevator": {
             "INV": {},
+            "FLUID": {},
             "CTRL": {
                 "pulley_motor": "",
                 "cabin_gps": "",
@@ -76,6 +173,29 @@
                 "floor_2_button": "",
                 "floor_3_button": "",
                 "floor_4_button": ""
+            }
+        },
+        "relays": {
+            "INV": {},
+            "FLUID": {},
+            "CTRL": {
+                "boiler_output": "computer_83",
+                "guest_home": "computer_78",
+                "level_1": "computer_82",
+                "level_2_NW": "computer_80",
+                "level_2_SE": "computer_80",
+                "level_3": ""
+            }
+        },
+        "repeaters": {
+            "INV": {},
+            "FLUID": {},
+            "CTRL": {
+                "NW_L": "computer_79",
+                "NW_1": "computer_60",
+                "NW_2": "computer_81",
+                "NW_3": "",
+                "NW_4": ""
             }
         }
     }

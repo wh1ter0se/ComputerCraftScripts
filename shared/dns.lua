@@ -22,3 +22,7 @@ function dns.getPeripheral(label)
     print("Found peripheral \""..label.."\" ("..message..")")
     return peripheral.wrap(message)
 end
+
+function dns.getPeripheralList(label)
+    
+end

@@ -1,5 +1,6 @@
 require("shared/util")
 json = require("shared/json")
+cryptonet = require("shared/cryptoNet")
 
 modemSide = arg[1] or "back"
 

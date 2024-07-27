@@ -38,3 +38,27 @@ function util.split(inputstr, sep)
     end
     return t
 end
+
+function util.getKeys(table)
+    local keys = {}
+    local n = 0
+
+    for k, v in pairs(tab) do
+        n = n + 1
+        keys[n] = k
+    end
+
+    return keys
+end
+
+function util.getVals(table)
+    local vals = {}
+    local n = 0
+
+    for k, v in pairs(tab) do
+        n = n + 1
+        vals[n] = v
+    end
+
+    return vals
+end
